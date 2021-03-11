@@ -66,9 +66,12 @@ default menu
 prompt 0
 timeout 600
 MENU TITLE PXE setup
+LABEL local
+  menu label Boot from ^local drive
+  menu default
+  localboot 0
 LABEL linux
   menu label ^Install system
-  menu default
   kernel images/CentOS-8.2/vmlinuz
   append initrd=images/CentOS-8.2/initrd.img ip=enp0s3:dhcp inst.repo=http://10.0.0.20/pxe/centos8-install
 LABEL linux-auto
@@ -83,9 +86,6 @@ LABEL rescue
   menu label ^Rescue installed system
   kernel images/CentOS-8.2/vmlinuz
   append initrd=images/CentOS-8.2/initrd.img rescue
-LABEL local
-  menu label Boot from ^local drive
-  localboot 0xffff
 EOF
 
 # create boot images folder and load images
